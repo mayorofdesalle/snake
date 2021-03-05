@@ -37,7 +37,7 @@ class Snake:
     def move(self):
         ''' Moves the head towards the direction, and all the rest into the position of the segment before them '''
         pos = self._pos_to_move()
-        if pos not in [s.pos() for s in self._body]:
+        if pos not in [s.pos() for s in self._body[1:]]:
             for i in range(len(self._body)-1, 0, -1):
                 new_x = self._body[i - 1].xcor()
                 new_y = self._body[i - 1].ycor()
@@ -70,3 +70,6 @@ class Snake:
     def grow(self):
         ''' Extends the snake's body by one segment '''
         self._extendBody(*self._body[-1].pos())
+
+    def get_pos(self):
+        return [p.pos() for p in self._body]

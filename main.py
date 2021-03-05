@@ -40,7 +40,7 @@ while not game_over:
         if snake.head.distance(food) < 10:
             scoreboard.increase()
             snake.grow()
-            food.random()
+            food.random(snake.get_pos())
     else:
         game_over = True
         scoreboard.game_over()
