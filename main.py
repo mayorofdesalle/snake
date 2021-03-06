@@ -16,10 +16,6 @@ screen.title('Snake')
 
 # Initialize the game
 snake = Snake()
-food = Food()
-scoreboard = Scoreboard()
-
-
 # Set up keys and start listening
 screen.listen()
 screen.onkey(snake.right, 'Right')
@@ -31,14 +27,40 @@ screen.onkey(snake.up, 'w')
 screen.onkey(snake.down, 'Down')
 screen.onkey(snake.down, 's')
 
-# Start the game
+# Menu
+idle = True
+def start():
+    global idle
+    idle = False
+
+while idle:
+    x = snake.head.xcor()
+    y = snake.head.ycor()
+    if (x, y) == (20, 20):
+        snake.down()
+    elif (x, y) == (20, -20):
+        snake.left()
+    elif (x, y) == (-20, -20):
+        snake.up()
+    elif (x, y) == (-20, 20):
+        snake.right()
+    snake.move()
+    screen.onkeypress(start)
+    time.sleep(0.1)
+    screen.update()
+
+food = Food()
+scoreboard = Scoreboard()
 game_over = False
+delay = 0.1
 while not game_over:
     screen.update()
-    time.sleep(0.07)
+    time.sleep(delay)
     if snake.move():
         if snake.head.distance(food) < 10:
             scoreboard.increase()
+            if scoreboard.score%10 == 0 and delay > 0.05:
+                delay -= 0.005
             snake.grow()
             food.random(snake.get_pos())
     else:

@@ -7,7 +7,7 @@ class Snake:
         ''' Constructs a three segment snake '''
         self._body = []
         for i in range(3):
-            self._extendBody(-i*10, 0)
+            self._extendBody(-i*10, 20)
         self._direction = 'R'
         self.head = self._body[0]
 
