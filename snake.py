@@ -1,11 +1,17 @@
 from turtle import Turtle
+HELL = (500, 500)
+
 
 class Snake:
 
 
     def __init__(self):
-        ''' Constructs a three segment snake '''
+        ''' Initializes the snake '''
         self._body = []
+        self._create_snake()
+        
+    def _create_snake(self):
+        ''' Creates the snake at the origin '''
         for i in range(3):
             self._extendBody(-i*10, 20)
         self._direction = 'R'
@@ -72,4 +78,12 @@ class Snake:
         self._extendBody(*self._body[-1].pos())
 
     def get_pos(self):
+        ''' Returns the position of the snake's whole body '''
         return [p.pos() for p in self._body]
+
+    def reset(self):
+        ''' Recreates the snake at the origin '''
+        for seg in self._body:
+            seg.goto(HELL)
+        self._body.clear()
+        self._create_snake()

@@ -51,9 +51,8 @@ while idle:
 
 food = Food()
 scoreboard = Scoreboard()
-game_over = False
 delay = 0.1
-while not game_over:
+while True:
     screen.update()
     time.sleep(delay)
     if snake.move():
@@ -64,7 +63,8 @@ while not game_over:
             snake.grow()
             food.random(snake.get_pos())
     else:
-        game_over = True
         scoreboard.game_over()
+        snake.reset()
+        food.random(snake.get_pos())
 
 screen.exitonclick()

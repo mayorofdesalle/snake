@@ -1,5 +1,11 @@
 from turtle import Turtle
+from random import choice
 import time
+HELL = (500, 500)
+GAME_OVER_WORDS = ['GAME OVER', 'MEH', 'TRY AGAIN', 
+                    'THAT YOUR BEST?', 'OUROBOROS MUCH?', 
+                    'NAH', 'THAT HUNGRY?', 'GO VEGETERIAN'
+                    'TO HELL AND BACK AGAIN', 'BON APPÉTIT']
 
 
 class Scoreboard(Turtle):
@@ -27,8 +33,17 @@ class Scoreboard(Turtle):
 
     def game_over(self):
         ''' Shows the game over screen '''
+        # Game over screen
         over = Turtle()
         over.hideturtle()
         over.color(61, 80, 61)
         over.pu()
-        over.write("GAME OVER", align='center', font=('Digital-7', 20, 'bold'))
+        over.write(choice(GAME_OVER_WORDS), align='center', font=('Digital-7', 20, 'bold'))
+        # Stay on for 2 seconds
+        time.sleep(2)
+        # Clear the screen
+        over.goto(HELL)
+        over.clear()
+        # Reset the score
+        self.score=0
+        self._update_scoreboard()
