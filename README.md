@@ -1,8 +1,7 @@
 # Snake (?)
 
 Made with python's turtle.
-- A slightly modern (and slightly lazy) touch to Nokia's classic.
-- There are no menus or a replays.
+- Slightly modern, slightly lazy.
 - _Hardcore_ gaming at its core.
 - Controls might be a little wobbly.
 

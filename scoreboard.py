@@ -4,7 +4,7 @@ import time
 HELL = (500, 500)
 GAME_OVER_WORDS = ['GAME OVER', 'MEH', 'TRY AGAIN', 
                     'THAT YOUR BEST?', 'OUROBOROS MUCH?', 
-                    'NAH', 'THAT HUNGRY?', 'GO VEGETERIAN'
+                    'NAH', 'THAT HUNGRY?', 'GO VEGETERIAN',
                     'TO HELL AND BACK AGAIN', 'BON APPÉTIT']
 
 
