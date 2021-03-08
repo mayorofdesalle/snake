@@ -1,7 +1,9 @@
+from playsound import playsound
+from random import choice
 from turtle import Screen
 from snake import Snake
 from food import Food
-from scoreboard import Scoreboard
+from ui import UI
 import time
 
 # Set up the screen
@@ -50,21 +52,27 @@ while idle:
     screen.update()
 
 food = Food()
-scoreboard = Scoreboard()
+UI = UI()
 delay = 0.1
+playsound(f'./res/sound/snake.wav', False)
 while True:
     screen.update()
     time.sleep(delay)
     if snake.move():
         if snake.head.distance(food) < 10:
-            scoreboard.increase()
-            if scoreboard.score%10 == 0 and delay > 0.05:
+            playsound(f'./res/sound/food{(choice(range(1000))%5)+1}.wav', False)
+            if UI.increase_score() and delay > 0.05:
                 delay -= 0.005
             snake.grow()
             food.random(snake.get_pos())
     else:
-        scoreboard.game_over()
+        playsound(f'./res/sound/death.wav', False)
+        screen.bgpic("res/death_screen.png")
+        UI.game_over()
+        time.sleep(2)
+        UI.reset()
         snake.reset()
+        playsound(f'./res/sound/snake.wav', False)
+        screen.bgpic("res/screen.png")
         food.random(snake.get_pos())
-
-screen.exitonclick()
+        delay = 0.1
