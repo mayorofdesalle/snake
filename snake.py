@@ -6,19 +6,19 @@ class Snake:
 
 
     def __init__(self):
-        ''' Initializes the snake '''
+        ''' Initialize the snake '''
         self._body = []
         self._create_snake()
         
     def _create_snake(self):
-        ''' Creates the snake at the origin '''
+        ''' Create the snake at the origin '''
         for i in range(3):
             self._extendBody(-i*10, 20)
         self._direction = 'R'
         self.head = self._body[0]
 
     def _extendBody(self, x, y):
-        ''' Creates the body part for extension '''
+        ''' Create the body part for extension '''
         segment = Turtle('square')
         segment.shapesize(0.5, 0.5)
         segment.color(61, 80, 61)
@@ -27,7 +27,7 @@ class Snake:
         self._body.append(segment)
 
     def _pos_to_move(self):
-        ''' Calculates the coordinates to move according to the direction and checks boundaries '''
+        ''' Calculate the coordinates to move according to the direction and checks boundaries '''
         current_x = self.head.xcor()
         current_y = self.head.ycor()
         x_dirs = {'R': 10, 'L': -10}
@@ -41,7 +41,7 @@ class Snake:
         return (current_x, current_y)
 
     def move(self):
-        ''' Moves the head towards the direction, and all the rest into the position of the segment before them '''
+        ''' Move the head towards the direction, and all the rest into the position of the segment before them '''
         pos = self._pos_to_move()
         if pos not in [s.pos() for s in self._body[1:]]:
             for i in range(len(self._body)-1, 0, -1):
@@ -54,35 +54,35 @@ class Snake:
         return False
     
     def right(self):
-        ''' Sets the direction of the snake to the right '''
+        ''' Set the direction of the snake to the right '''
         if not self._direction == 'L':
             self._direction = 'R'
 
     def left(self):
-        ''' Sets the direction of the snake to the left '''
+        ''' Set the direction of the snake to the left '''
         if not self._direction == 'R':
             self._direction = 'L'
 
     def up(self):
-        ''' Sets the direction of the snake upwards '''
+        ''' Set the direction of the snake upwards '''
         if not self._direction == 'D':
             self._direction = 'U'
 
     def down(self):
-        ''' Sets the direction of the snake downwards '''
+        ''' Set the direction of the snake downwards '''
         if not self._direction == 'U':
             self._direction = 'D'
 
     def grow(self):
-        ''' Extends the snake's body by one segment '''
+        ''' Extend the snake's body by one segment '''
         self._extendBody(*self._body[-1].pos())
 
-    def get_pos(self):
-        ''' Returns the position of the snake's whole body '''
+    def pos(self):
+        ''' Return the position of the snake's whole body '''
         return [p.pos() for p in self._body]
 
     def reset(self):
-        ''' Recreates the snake at the origin '''
+        ''' Recreate the snake at the origin '''
         for seg in self._body:
             seg.goto(HELL)
         self._body.clear()
